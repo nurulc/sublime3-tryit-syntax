@@ -1,0 +1,19 @@
+%YAML 1.2
+---
+name: try
+file_extensions: [try]
+scope: source.try
+
+contexts:
+  main:
+    - match: ^\s*!\b(head|end|md|tryit|html|js|render-start|render-end)\b
+      scope: keyword.control.try
+    - match: '"'
+      push: string
+
+  string:
+    - meta_scope: string.quoted.double.c
+    - match: \\.
+      scope: constant.character.escape.c
+    - match: '"'
+      pop: true
